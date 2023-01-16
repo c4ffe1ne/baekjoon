@@ -11,12 +11,13 @@ public class Main {
         System.out.println(toHash(text, length));
     }
 
-    public static int toHash(String text, int length) {
-        int sum = 0;
+    public static long toHash(String text, int length) {
+        long sum = 0;
         char[] chars = text.toCharArray();
         for (int i = 0; i < length; i++) {
             int number = chars[i] - 0x60;
-            sum += (number * Math.pow(R, i));
+            long pow = (long) Math.pow(R, i) % M;
+            sum += number * pow;
         }
         return sum % M;
     }
