@@ -1,6 +1,4 @@
 import java.io.*;
-import java.util.Arrays;
-import java.util.StringTokenizer;
 
 public class Main {
 
@@ -8,10 +6,12 @@ public class Main {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int size = Integer.parseInt(reader.readLine());
         String[] words = new String[size];
-        // 오름차순 & 사전순 정렬
         for (int i = 0; i < size; i++) {
-            String word = reader.readLine();
-            words[i] = word;
+            words[i] = reader.readLine();
+        }
+
+        for (int i = 1; i < size; i++) {
+            String word = words[i];
             int j = i - 1;
             while (j >= 0 && (word.length() < words[j].length() || (word.length() == words[j].length() && word.compareTo(words[j]) < 0))) {
                 words[j + 1] = words[j];
@@ -20,7 +20,6 @@ public class Main {
             words[j + 1] = word;
         }
 
-        // 중복 제거 출력
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < size; i++) {
             int j = i - 1;
