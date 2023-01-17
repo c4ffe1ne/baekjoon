@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Arrays;
 
 public class Main {
 
@@ -10,15 +11,12 @@ public class Main {
             words[i] = reader.readLine();
         }
 
-        for (int i = 1; i < size; i++) {
-            String word = words[i];
-            int j = i - 1;
-            while (j >= 0 && (word.length() < words[j].length() || (word.length() == words[j].length() && word.compareTo(words[j]) < 0))) {
-                words[j + 1] = words[j];
-                j--;
-            }
-            words[j + 1] = word;
-        }
+        Arrays.sort(words, (v1, v2) -> {
+            int diff = v1.length() - v2.length();
+            if (diff == 0)
+                return v1.compareTo(v2);
+            return diff;
+        });
 
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < size; i++) {
